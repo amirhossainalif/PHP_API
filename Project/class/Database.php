@@ -36,11 +36,12 @@ class UserM {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // public function getAllUser() {
-    //     $stmt = $this->pdo->prepare("SELECT * FROM user");
-    //     $stmt->execute();
-    //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    // }
+    public function getUserById($id) {
+        $stmt = $this->pdo->prepare("SELECT id, Name, Email FROM user WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function getAllUser() {
         $stmt = $this->pdo->prepare("SELECT id, Name, Email FROM user");
